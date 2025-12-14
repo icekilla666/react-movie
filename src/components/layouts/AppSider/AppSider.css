@@ -1,0 +1,173 @@
+.app-sider {
+  background: transparent !important;
+  min-height: calc(100vh - 90px);
+  position: sticky;
+  top: 90px;
+  height: calc(100vh - 90px);
+  padding: 1rem 1rem 1rem 2rem;
+  overflow: visible;
+}
+
+.app-sider__wrapper {
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.app-sider__content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-sider__header {
+  padding: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 212, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-sider__header-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.app-sider__header-title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.app-sider__section {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-sider__section:last-child {
+  border-bottom: none;
+}
+
+.app-sider__section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.app-sider__section-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.app-sider__title {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.app-sider__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.app-sider__menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: not-allowed;
+}
+
+.app-sider__menu-item:hover {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.app-sider__menu-label {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.app-sider__menu-placeholder {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* Стилизация скроллбара для sidebar */
+.app-sider__wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.app-sider__wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-sider__wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.app-sider__wrapper::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}
+
+@media (max-width: 1024px) {
+  .app-sider {
+    width: 240px !important;
+    padding: 1rem 0.75rem 1rem 1.5rem;
+  }
+
+  .app-sider__header {
+    padding: 1.25rem;
+  }
+
+  .app-sider__section {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-sider {
+    width: 100% !important;
+    position: relative;
+    top: 0;
+    min-height: auto;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .app-sider__wrapper {
+    border-radius: 12px;
+  }
+
+  .app-sider__header {
+    padding: 1rem;
+  }
+
+  .app-sider__section {
+    padding: 1rem;
+  }
+
+  .app-sider__menu-item {
+    padding: 0.65rem 0.85rem;
+  }
+}
