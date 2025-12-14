@@ -66,10 +66,47 @@ export default function AppContent() {
     }
   }, []);
 
-  const test = "john";
+  const topMovieIds = [
+    "tt0111161", // Побег из Шоушенка (9.3)
+    "tt0068646", // Крестный отец (9.2)
+    "tt0468569", // Темный рыцарь (9.0)
+    "tt0071562", // Крестный отец 2 (9.0)
+    "tt0050083", // 12 разгневанных мужчин (9.0)
+    "tt0108052", // Список Шиндлера (8.9)
+    "tt0167260", // Властелин колец: Возвращение короля (8.9)
+    "tt0110912", // Криминальное чтиво (8.9)
+    "tt0060196", // Хороший, плохой, злой (8.8)
+    "tt0137523", // Бойцовский клуб (8.8)
+  ];
+  const loadTopMovies = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const promises = topMovieIds.map((id) => getMovieDetails(id));
+      const results = await Promise.all(promises);
+
+      const successfulResults = results.filter(
+        (movie) => movie.Response === "True"
+      );
+
+      const sortedMovies = successfulResults.sort((a, b) => {
+        const ratingA = parseFloat(a.imdbRating) || 0;
+        const ratingB = parseFloat(b.imdbRating) || 0;
+        return ratingB - ratingA;
+      });
+
+      setMovies(sortedMovies.slice(0, 10));
+    } catch (error) {
+      setError("Ошибка при загрузке топ фильмов");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    apiSearchMovies(test);
+    loadTopMovies();
   }, []);
 
   function systemSearch(event) {
