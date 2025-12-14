@@ -1,13 +1,14 @@
 /* Глобальные стили для Ant Design Layout */
 .ant-layout {
-  background: #0f0f1a !important;
+  background: #0a0a0a !important;
 }
 
 .ant-layout-content {
-  background: #0f0f1a !important;
+  background: #0a0a0a !important;
 }
 
 html {
   scroll-behavior: smooth;
+  background: #0a0a0a;
 }
 

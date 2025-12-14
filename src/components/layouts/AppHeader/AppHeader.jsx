@@ -8,7 +8,9 @@ export default function AppHeader() {
     <Header className="app-header">
       <div className="app-header__wrapper">
         <div className="app-header__content">
-          <h1 className="app-header__logo"><a href="/">🎬 КиноПоиск</a></h1>
+          <h1 className="app-header__logo">
+            <a style={{color: "#e5e5e5"}} href="/">КиноМакс</a>
+          </h1>
         </div>
       </div>
     </Header>

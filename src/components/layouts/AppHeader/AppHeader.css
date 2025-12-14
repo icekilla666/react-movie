@@ -11,15 +11,34 @@
 
 .app-header__wrapper {
   width: 100%;
-  background: #1a1a2e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 0 2rem;
   height: 70px;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header__wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
 }
 
 .app-header__content {
@@ -30,9 +49,9 @@
 }
 
 .app-header__logo {
-  color: #00d4ff;
+  color: #e5e5e5;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.5px;
   margin: 0;
 }
@@ -42,14 +61,13 @@
     padding: 0.75rem 1rem !important;
     height: 80px !important;
   }
-  
+
   .app-header__wrapper {
     padding: 0 1.5rem;
     height: 60px;
   }
-  
+
   .app-header__logo {
     font-size: 1.25rem;
   }
 }
-

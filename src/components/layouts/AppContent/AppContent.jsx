@@ -10,8 +10,8 @@ const { Content } = Layout;
 const contentStyle = {
   textAlign: "center",
   minHeight: "100vh",
-  color: "#fff",
-  background: "#0f0f1a",
+  color: "#e5e5e5",
+  background: "#0a0a0a",
   padding: "2rem",
   paddingTop: "1rem",
 };
