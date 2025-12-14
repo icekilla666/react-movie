@@ -1,15 +1,16 @@
 .movie-modal {
-  position: absolute;
-  top: 0;
+  bottom: 0;
+  position: fixed;
+  /* top: 0; */
   right: 0;
   width: 100%;
-  max-width: 0px;
+  max-width: 750px;
   height: calc(100vh - 90px);
   margin: 0;
   padding: 0;
   border: none;
   background: transparent;
-  z-index: 1000;
+  z-index: 10;
   overflow: hidden;
   animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -145,73 +146,173 @@
 
 .movie-details-meta {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
-.movie-details-year,
-.movie-details-type {
-  padding: 0.4rem 0.8rem;
+.movie-details-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
   background: rgba(0, 212, 255, 0.15);
   border: 1px solid rgba(0, 212, 255, 0.3);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.85rem;
   color: #00d4ff;
   text-transform: capitalize;
+  transition: all 0.3s ease;
 }
 
-.movie-details-rating {
+.movie-details-badge:hover {
+  background: rgba(0, 212, 255, 0.25);
+  border-color: rgba(0, 212, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.movie-details-badge.rated-badge {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.3);
+  color: #ffc107;
+}
+
+.badge-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.movie-details-ratings {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.rating-card {
+  flex: 1;
+  min-width: 140px;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.rating-label {
-  font-size: 0.9rem;
-  color: #94a3b8;
-}
-
-.rating-value {
-  font-size: 0.9rem;
-  color: #fff;
-  font-weight: 600;
-}
-
-.movie-details-description,
-.movie-details-genre,
-.movie-details-director,
-.movie-details-actors {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.movie-details-description h3,
-.movie-details-genre h3,
-.movie-details-director h3,
-.movie-details-actors h3 {
-  font-size: 1rem;
+.rating-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.rating-card.imdb-rating {
+  border-color: rgba(255, 193, 7, 0.3);
+  background: rgba(255, 193, 7, 0.08);
+}
+
+.rating-card.metascore-rating {
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.rating-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.rating-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rating-value-large {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.rating-votes {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.movie-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.movie-details-section:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.movie-details-section.awards-section {
+  background: rgba(255, 193, 7, 0.08);
+  border-color: rgba(255, 193, 7, 0.2);
+}
+
+.movie-details-section.boxoffice-section {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #00d4ff;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-size: 0.85rem;
 }
 
-.movie-details-description p,
-.movie-details-genre p,
-.movie-details-director p,
-.movie-details-actors p {
+.section-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.section-content {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #e2e8f0;
   margin: 0;
+}
+
+.section-content.boxoffice-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.movie-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 1024px) {
@@ -235,9 +336,31 @@
 
   .movie-details-content {
     padding: 1.5rem;
+    gap: 1.25rem;
   }
 
   .movie-details-title {
+    font-size: 1.5rem;
+  }
+
+  .movie-details-ratings {
+    flex-direction: column;
+  }
+
+  .rating-card {
+    min-width: 100%;
+  }
+
+  .movie-details-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .movie-details-section {
+    padding: 1rem;
+  }
+
+  .rating-value-large {
     font-size: 1.5rem;
   }
 }

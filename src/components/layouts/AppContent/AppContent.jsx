@@ -1,7 +1,7 @@
 import { Layout, Card, Flex, Spin } from "antd";
 import { useState, useEffect } from "react";
 import SearchBar from "../../common/SearchBar/SearchBar";
-import { movieSearch } from "../../../services/movieApi";
+import { movieSearch, getMovieDetails } from "../../../services/movieApi";
 import Modal from "../../common/Modal/Modal";
 import "./AppContent.css";
 
@@ -23,6 +23,13 @@ export default function AppContent() {
   const [searchValue, setSearchValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const detaliesCard = async (movie) => {
+    const details = await getMovieDetails(movie.imdbID);
+    setSelectedMovie(details);
+    setModalOpen(true);
+    console.log(details);
+  };
 
   const apiSearchMovies = async (query) => {
     if (!query.trim()) {
@@ -59,18 +66,17 @@ export default function AppContent() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   apiSearchMovies("john");
-  // }, []);
+  const test = "john";
+
+  useEffect(() => {
+    apiSearchMovies(test);
+  }, []);
 
   function systemSearch(event) {
     event.preventDefault();
     apiSearchMovies(searchValue);
   }
-  const detaliesCard = (movie) => {
-    setSelectedMovie(movie);
-    setModalOpen(true);
-  };
+
   return (
     <Content style={contentStyle} className="app-content" id="main-content">
       <div id="search-section" style={{ scrollMarginTop: "100px" }}>
@@ -143,60 +149,233 @@ export default function AppContent() {
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         {selectedMovie && (
           <div className="movie-details">
-            <button className="modal-close-btn" onClick={() => setModalOpen(false)}>
+            <button
+              className="modal-close-btn"
+              onClick={() => setModalOpen(false)}
+            >
               ×
             </button>
-            
+
             {selectedMovie.Poster && selectedMovie.Poster !== "N/A" && (
               <div className="movie-details-poster">
                 <img src={selectedMovie.Poster} alt={selectedMovie.Title} />
               </div>
             )}
-            
+
             <div className="movie-details-content">
               <h2 className="movie-details-title">{selectedMovie.Title}</h2>
-              
+
               <div className="movie-details-meta">
                 {selectedMovie.Year && (
-                  <span className="movie-details-year">{selectedMovie.Year}</span>
+                  <span className="movie-details-badge">
+                    <img
+                      src="src/assets/icons/calendar.svg"
+                      className="badge-icon"
+                    />
+                    {selectedMovie.Year}
+                  </span>
                 )}
                 {selectedMovie.Type && (
-                  <span className="movie-details-type">{selectedMovie.Type}</span>
+                  <span className="movie-details-badge">
+                    <img
+                      src="src/assets/icons/clapperboard.svg"
+                      className="badge-icon"
+                    />
+                    {selectedMovie.Type}
+                  </span>
+                )}
+                {selectedMovie.Rated && selectedMovie.Rated !== "N/A" && (
+                  <span className="movie-details-badge rated-badge">
+                    <img
+                      src="src/assets/icons/eye.svg"
+                      className="badge-icon"
+                    />
+                    {selectedMovie.Rated}
+                  </span>
+                )}
+                {selectedMovie.Runtime && selectedMovie.Runtime !== "N/A" && (
+                  <span className="movie-details-badge">
+                    <img
+                      src="src/assets/icons/hourglass.svg"
+                      className="badge-icon"
+                    />
+                    {selectedMovie.Runtime}
+                  </span>
                 )}
               </div>
-              
-              {selectedMovie.imdbID && (
-                <div className="movie-details-rating">
-                  <span className="rating-label">IMDb ID:</span>
-                  <span className="rating-value">{selectedMovie.imdbID}</span>
+
+              <div className="movie-details-ratings">
+                {selectedMovie.imdbRating &&
+                  selectedMovie.imdbRating !== "N/A" && (
+                    <div className="rating-card imdb-rating">
+                      <div className="rating-header">
+                        <img
+                          src="src/assets/icons/star.svg"
+                          className="badge-icon"
+                        />
+                        <span className="rating-label">рейтинг</span>
+                      </div>
+                      <div className="rating-value-large">
+                        {selectedMovie.imdbRating}
+                      </div>
+                      {selectedMovie.imdbVotes &&
+                        selectedMovie.imdbVotes !== "N/A" && (
+                          <div className="rating-votes">
+                            {selectedMovie.imdbVotes} голосов
+                          </div>
+                        )}
+                    </div>
+                  )}
+                {selectedMovie.Metascore &&
+                  selectedMovie.Metascore !== "N/A" && (
+                    <div className="rating-card metascore-rating">
+                      <div className="rating-header">
+                        <img
+                          src="src/assets/icons/target.svg"
+                          className="badge-icon"
+                        />
+                        <span className="rating-label">Мета-рейтинг</span>
+                      </div>
+                      <div className="rating-value-large">
+                        {selectedMovie.Metascore}
+                      </div>
+                    </div>
+                  )}
+              </div>
+
+              {selectedMovie.Plot && selectedMovie.Plot !== "N/A" && (
+                <div className="movie-details-section">
+                  <h3 className="section-title">
+                    <img
+                      src="src/assets/icons/notebook-pen.svg"
+                      className="badge-icon"
+                    />
+                    Описание
+                  </h3>
+                  <p className="section-content">{selectedMovie.Plot}</p>
                 </div>
               )}
-              
-              {selectedMovie.Plot && (
-                <div className="movie-details-description">
-                  <h3>Описание</h3>
-                  <p>{selectedMovie.Plot}</p>
+
+              <div className="movie-details-grid">
+                {selectedMovie.Genre && selectedMovie.Genre !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/drama.svg"
+                        className="badge-icon"
+                      />
+                      Жанр
+                    </h3>
+                    <p className="section-content">{selectedMovie.Genre}</p>
+                  </div>
+                )}
+
+                {selectedMovie.Director && selectedMovie.Director !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/clapperboard.svg"
+                        className="badge-icon"
+                      />
+                      Режиссер
+                    </h3>
+                    <p className="section-content">{selectedMovie.Director}</p>
+                  </div>
+                )}
+
+                {selectedMovie.Writer && selectedMovie.Writer !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/pencil.svg"
+                        className="badge-icon"
+                      />
+                      Сценарист
+                    </h3>
+                    <p className="section-content">{selectedMovie.Writer}</p>
+                  </div>
+                )}
+
+                {selectedMovie.Actors && selectedMovie.Actors !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/users.svg"
+                        className="badge-icon"
+                      />
+                      Актеры
+                    </h3>
+                    <p className="section-content">{selectedMovie.Actors}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="movie-details-grid">
+                {selectedMovie.Country && selectedMovie.Country !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/earth.svg"
+                        className="badge-icon"
+                      />
+                      Страна
+                    </h3>
+                    <p className="section-content">{selectedMovie.Country}</p>
+                  </div>
+                )}
+
+                {selectedMovie.Language && selectedMovie.Language !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/languages.svg"
+                        className="badge-icon"
+                      />
+                      Язык
+                    </h3>
+                    <p className="section-content">{selectedMovie.Language}</p>
+                  </div>
+                )}
+
+                {selectedMovie.Released && selectedMovie.Released !== "N/A" && (
+                  <div className="movie-details-section">
+                    <h3 className="section-title">
+                      <img
+                        src="src/assets/icons/calendar.svg"
+                        className="badge-icon"
+                      />
+                      Дата выхода
+                    </h3>
+                    <p className="section-content">{selectedMovie.Released}</p>
+                  </div>
+                )}
+              </div>
+
+              {selectedMovie.Awards && selectedMovie.Awards !== "N/A" && (
+                <div className="movie-details-section awards-section">
+                  <h3 className="section-title">
+                    <img
+                      src="src/assets/icons/trophy.svg"
+                      className="badge-icon"
+                    />
+                    Награды
+                  </h3>
+                  <p className="section-content">{selectedMovie.Awards}</p>
                 </div>
               )}
-              
-              {selectedMovie.Genre && (
-                <div className="movie-details-genre">
-                  <h3>Жанр</h3>
-                  <p>{selectedMovie.Genre}</p>
-                </div>
-              )}
-              
-              {selectedMovie.Director && (
-                <div className="movie-details-director">
-                  <h3>Режиссер</h3>
-                  <p>{selectedMovie.Director}</p>
-                </div>
-              )}
-              
-              {selectedMovie.Actors && (
-                <div className="movie-details-actors">
-                  <h3>Актеры</h3>
-                  <p>{selectedMovie.Actors}</p>
+
+              {selectedMovie.BoxOffice && selectedMovie.BoxOffice !== "N/A" && (
+                <div className="movie-details-section boxoffice-section">
+                  <h3 className="section-title">
+                    <img
+                      src="src/assets/icons/circle-dollar-sign.svg"
+                      className="badge-icon"
+                    />
+                    Кассовые сборы
+                  </h3>
+                  <p className="section-content boxoffice-value">
+                    {selectedMovie.BoxOffice}
+                  </p>
                 </div>
               )}
             </div>

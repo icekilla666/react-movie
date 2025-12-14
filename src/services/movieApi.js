@@ -19,3 +19,22 @@ export const movieSearch = async (searchTerm, page = 1) => {
     throw error;
   }
 };
+
+export const getMovieDetails = async (imdbID) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/?apikey=${API_KEY}&i=${imdbID}`
+    );
+    
+    if (!response.ok) {
+      throw new Error("Ошибка сети!");
+    }
+    
+    const data = await response.json();
+    return data;
+    
+  } catch (error) {
+    console.log("Ошибка при получении деталей фильма:", error);
+    throw error;
+  }
+};

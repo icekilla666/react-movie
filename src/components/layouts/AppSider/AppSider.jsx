@@ -36,7 +36,7 @@ export default function AppSider() {
 
           <div className="app-sider__section">
             <div className="app-sider__section-header">
-              <img src="src/assets/icons/clapperboard.svg" className="app-sider__section-icon"></img>
+              <img src="src/assets/icons/drama.svg" className="app-sider__section-icon"></img>
               <h3 className="app-sider__title">Жанры</h3>
             </div>
             <div className="app-sider__menu">
