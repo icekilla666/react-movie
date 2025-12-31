@@ -9,7 +9,7 @@ export default function AppSider() {
       <div className="app-sider__wrapper">
         <div className="app-sider__content">
           <div className="app-sider__header">
-            <img src="src/assets/icons/settings.svg" className="app-sider__header-icon"></img>
+            <img src="/src/assets/icons/settings.svg" className="app-sider__header-icon"></img>
             <h2 className="app-sider__header-title">Настройки</h2>
           </div>
 
