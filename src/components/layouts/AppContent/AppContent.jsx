@@ -206,7 +206,7 @@ export default function AppContent() {
                 {selectedMovie.Year && (
                   <span className="movie-details-badge">
                     <img
-                      src="src/assets/icons/calendar.svg"
+                      src="/icons/calendar.svg"
                       className="badge-icon"
                     />
                     {selectedMovie.Year}
@@ -215,7 +215,7 @@ export default function AppContent() {
                 {selectedMovie.Type && (
                   <span className="movie-details-badge">
                     <img
-                      src="src/assets/icons/clapperboard.svg"
+                      src="/icons/clapperboard.svg"
                       className="badge-icon"
                     />
                     {selectedMovie.Type}
@@ -224,7 +224,7 @@ export default function AppContent() {
                 {selectedMovie.Rated && selectedMovie.Rated !== "N/A" && (
                   <span className="movie-details-badge rated-badge">
                     <img
-                      src="src/assets/icons/eye.svg"
+                      src="/icons/eye.svg"
                       className="badge-icon"
                     />
                     {selectedMovie.Rated}
@@ -233,7 +233,7 @@ export default function AppContent() {
                 {selectedMovie.Runtime && selectedMovie.Runtime !== "N/A" && (
                   <span className="movie-details-badge">
                     <img
-                      src="src/assets/icons/hourglass.svg"
+                      src="/icons/hourglass.svg"
                       className="badge-icon"
                     />
                     {selectedMovie.Runtime}
@@ -247,7 +247,7 @@ export default function AppContent() {
                     <div className="rating-card imdb-rating">
                       <div className="rating-header">
                         <img
-                          src="src/assets/icons/star.svg"
+                          src="/icons/star.svg"
                           className="badge-icon"
                         />
                         <span className="rating-label">рейтинг</span>
@@ -268,7 +268,7 @@ export default function AppContent() {
                     <div className="rating-card metascore-rating">
                       <div className="rating-header">
                         <img
-                          src="src/assets/icons/target.svg"
+                          src="/icons/target.svg"
                           className="badge-icon"
                         />
                         <span className="rating-label">Мета-рейтинг</span>
@@ -284,7 +284,7 @@ export default function AppContent() {
                 <div className="movie-details-section">
                   <h3 className="section-title">
                     <img
-                      src="src/assets/icons/notebook-pen.svg"
+                      src="/icons/notebook-pen.svg"
                       className="badge-icon"
                     />
                     Описание
@@ -298,7 +298,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/drama.svg"
+                        src="/icons/drama.svg"
                         className="badge-icon"
                       />
                       Жанр
@@ -311,7 +311,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/clapperboard.svg"
+                        src="/icons/clapperboard.svg"
                         className="badge-icon"
                       />
                       Режиссер
@@ -324,7 +324,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/pencil.svg"
+                        src="/icons/pencil.svg"
                         className="badge-icon"
                       />
                       Сценарист
@@ -337,7 +337,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/users.svg"
+                        src="/icons/users.svg"
                         className="badge-icon"
                       />
                       Актеры
@@ -352,7 +352,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/earth.svg"
+                        src="/icons/earth.svg"
                         className="badge-icon"
                       />
                       Страна
@@ -365,7 +365,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/languages.svg"
+                        src="/icons/languages.svg"
                         className="badge-icon"
                       />
                       Язык
@@ -378,7 +378,7 @@ export default function AppContent() {
                   <div className="movie-details-section">
                     <h3 className="section-title">
                       <img
-                        src="src/assets/icons/calendar.svg"
+                        src="/icons/calendar.svg"
                         className="badge-icon"
                       />
                       Дата выхода
@@ -392,7 +392,7 @@ export default function AppContent() {
                 <div className="movie-details-section awards-section">
                   <h3 className="section-title">
                     <img
-                      src="src/assets/icons/trophy.svg"
+                      src="/icons/trophy.svg"
                       className="badge-icon"
                     />
                     Награды
@@ -405,7 +405,7 @@ export default function AppContent() {
                 <div className="movie-details-section boxoffice-section">
                   <h3 className="section-title">
                     <img
-                      src="src/assets/icons/circle-dollar-sign.svg"
+                      src="/icons/circle-dollar-sign.svg"
                       className="badge-icon"
                     />
                     Кассовые сборы

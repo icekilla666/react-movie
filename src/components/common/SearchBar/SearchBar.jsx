@@ -13,7 +13,7 @@ export default function SearchBar({ onSearchChange, searchValue, submitSearch })
           value={searchValue}
         />
         <button type="submit" className="search-bar__button">
-          <img src="src/assets/icons/search.svg" alt="search" />
+          <img src="/icons/search.svg" alt="search" />
         </button>
       </div>
     </form>

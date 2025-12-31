@@ -9,13 +9,13 @@ export default function AppSider() {
       <div className="app-sider__wrapper">
         <div className="app-sider__content">
           <div className="app-sider__header">
-            <img src="/src/assets/icons/settings.svg" className="app-sider__header-icon"></img>
+            <img src="/icons/settings.svg" className="app-sider__header-icon"></img>
             <h2 className="app-sider__header-title">Настройки</h2>
           </div>
 
           <div className="app-sider__section">
             <div className="app-sider__section-header">
-              <img src="src/assets/icons/funnel.svg" className="app-sider__section-icon"></img>
+              <img src="/icons/funnel.svg" className="app-sider__section-icon"></img>
               <h3 className="app-sider__title">Фильтры</h3>
             </div>
             <div className="app-sider__menu">
@@ -36,7 +36,7 @@ export default function AppSider() {
 
           <div className="app-sider__section">
             <div className="app-sider__section-header">
-              <img src="src/assets/icons/drama.svg" className="app-sider__section-icon"></img>
+              <img src="/icons/drama.svg" className="app-sider__section-icon"></img>
               <h3 className="app-sider__title">Жанры</h3>
             </div>
             <div className="app-sider__menu">
